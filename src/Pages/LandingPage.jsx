@@ -3,17 +3,26 @@ import map from "../assets/Screenshot 2023-10-11 085143.png"
 import products from "../data/Product"
 import Layout from "../Layout/Layout"
 import MySurveys from "./MySurveys"
+import FetchCountries from "../data/fetchCountries"
+import { useQuery } from "react-query";
+import MainMap from "../components/Map"
+
 
 const LandingPage = () => {
+//   const { data } = useQuery({
+//     queryFn: async () => FetchCountries(),
+//     queryKey: 'countries'
+// })
+//   console.log(data)
   return (
     <Layout>
     <main className="w-full h-full mb-10  ">
       <MySurveys />
 
        <div className="px-4 md:px-10 mt-[40px] md:pl-[310px]">
-        <div className="w-full flex"> 
+        <div className="map" > 
           <div>
-            <img src={map} alt="images" className="h-[390px] lg:w-[400px] xl:w-[650px] " />
+            <MainMap/>
           </div>
           <div className="w-[320px] ml-[25px]  ">
             <div className="w-full bg-[#7ED957] h-[270px]">
@@ -67,6 +76,11 @@ const LandingPage = () => {
     </Layout>
 
   )
+}
+
+const containerStyles = {
+  display:"flex",
+  flexDirection: "row"
 }
 
 export default LandingPage
