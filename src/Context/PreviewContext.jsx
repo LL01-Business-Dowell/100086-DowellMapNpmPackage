@@ -8,9 +8,15 @@ const PreviewContext = React.createContext();
 const PreviewProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [surveys, setSurveys] = useState([]);
+  const [inputData, setInputData] = useState({
+    country: "",
+    city: "",
+    category: "",
+    from: "",
+    to: "",
+  });
 
-  const productUrl =
-    "https://dowell-surveys-qr-2.onrender.com/qr-code/codes/";
+  const productUrl = "https://dowell-surveys-qr-2.onrender.com/qr-code/codes/";
 
   const fetchApi = async () => {
     setLoading(true);
@@ -28,13 +34,15 @@ const PreviewProvider = ({ children }) => {
 
   useEffect(() => {
     fetchApi();
-  }, []); 
+  }, []);
 
   return (
     <PreviewContext.Provider
       value={{
         surveys,
-        loading
+        loading,
+        inputData,
+        setInputData,
       }}
     >
       {children}
