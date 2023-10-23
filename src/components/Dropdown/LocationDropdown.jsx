@@ -1063,7 +1063,7 @@ export default function LocationDropdown() {
       onChange={(e) => setInputData({ ...inputData, city: e.target.value })}
       className="block font-bold text-white w-full border-0 py-1.5 shadow-sm   sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none "
     >
-      <option>Select country</option>
+      <option>Select region</option>
       {cities.map((item) => (
         <option key={item}>{item.name}</option>
       ))}
