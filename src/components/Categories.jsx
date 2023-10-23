@@ -1,7 +1,14 @@
 import { useGlobalContext } from "../Context/PreviewContext";
+import { useQuery } from "react-query";
+import FetchCategories from "../data/fetchCategories";
 
 export default function Category () {
     const {inputData,setInputData}  = useGlobalContext();
+
+    // const {data:category_data} = useQuery({
+    //     queryFn: async ()=> FetchCategories(api_key=""),
+    //     queryKey: "categories"
+    // })
 
     const data = {
         "categories": [
