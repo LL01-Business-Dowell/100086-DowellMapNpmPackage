@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../Context/PreviewContext";
 import CountryDropdown from "../components/Dropdown/CountryDropdown";
 import LocationDropdown from "../components/Dropdown/LocationDropdown";
+import Category from "../components/Categories";
 
 export default function MySurveys() {
   const { setInputData } = useGlobalContext();
@@ -82,16 +83,7 @@ export default function MySurveys() {
               </div>
               <div className="w-full xl:w-4/12 px-4">
                 <div className="mt-2">
-                  <select
-                    id="country"
-                    name="country"
-                    autoComplete="country-name"
-                    className="h-[72px] block font-bold text-white w-full border-0  shadow-sm  sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none"
-                  >
-                    <option>Select category</option>
-                    <option>Workflow Ai</option>
-                    <option>Living labs Maps</option>
-                  </select>
+                    <Category/>
                 </div>
               </div>
             </div>
