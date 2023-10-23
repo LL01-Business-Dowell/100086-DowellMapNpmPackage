@@ -3,13 +3,16 @@ import Sidebar from "./Sidebar";
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <Sidebar />
+    <div style={layoutStyle}>
+      {/* <Sidebar /> */}
       <main>{children}</main>
       
     </div>
   );
 };
+const layoutStyle = {
+  width:"100%"
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
