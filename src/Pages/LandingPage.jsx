@@ -1,22 +1,84 @@
-// import { Link } from "react-router-dom"
-import products from "../data/Product";
+import { useState } from "react";
 import Layout from "../Layout/Layout";
 import MySurveys from "./MySurveys";
 import MainMap from "../components/Map";
 import { useGlobalContext } from "../Context/PreviewContext";
+import FetchNearby from "../data/fetchNearby";
+import FetchPlaceDetail from "../data/fetchPlaceDetail";
 
 const LandingPage = () => {
-  const { inputData } = useGlobalContext();
+  const { inputData, setInputData } = useGlobalContext();
+  const [loading, setLoading] = useState(false);
+  const [placeIds, setPlaceIds] = useState([]);
+  const [placeDetails, setPlaceDetails] = useState([]);
   //   const { data } = useQuery({
   //     queryFn: async () => FetchCountries(),
   //     queryKey: 'countries'
   // })
   //   console.log(data)
+
+  const handleSearch = async () => {
+    if (!isValidInput(inputData)) {
+      alert("please fill all the fields");
+      return;
+    }
+    try {
+      setLoading(true);
+      const searchOptions = {
+        radius1: inputData.radius1,
+        radius2: inputData.radius2,
+        center_lat: 51.50853,
+        center_lon: -0.12574,
+        query_string: inputData.query_string,
+        limit: "60",
+        api_key: "api_key",
+      };
+
+      const nearbyResults = await FetchNearby(searchOptions);
+      console.log("nearby", nearbyResults.data.place_id_list);
+      if (nearbyResults.data.place_id_list.length > 0) {
+        setPlaceIds(nearbyResults.data.place_id_list);
+        const placeDetailOptions = {
+          place_id_list: nearbyResults.data.place_id_list,
+          center_loc: "",
+          api_key: "api_key",
+        };
+        const placeDetail = await FetchPlaceDetail(placeDetailOptions);
+        console.log("first", placeDetail.data.succesful_results);
+        setPlaceDetails(placeDetail.data.succesful_results);
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+      setInputData((prevData) => ({
+        ...prevData,
+        country: "",
+        city: "",
+        radius1: "",
+        radius2: "",
+        query_string: "",
+      }));
+    }
+  };
+
+  const isValidInput = (inputData) => {
+    // Implement your input validation logic here
+    return (
+      inputData.country !== "" &&
+      inputData.city !== "" &&
+      inputData.radius1 !== "" &&
+      inputData.radius2 !== "" &&
+      inputData.query_string !== ""
+    );
+  };
+
   return (
     <Layout>
-      <main className="w-full h-full mb-10  ">
-        <MySurveys />
-        <div className="px-4 md:px-10 mt-[40px] md:pl-[310px]">
+      <main className="w-full h-full mb-10">
+        <MySurveys loading={loading} />
+        <div className="px-4 md:px-10 mt-[40px]">
           <div className="flex">
             <div className="mr-auto">
               <MainMap />
@@ -35,17 +97,14 @@ const LandingPage = () => {
                       Location - {inputData.city}
                     </li>
                     <li className="text-[16px] font-medium mt-[7px]">
-                      Distance from center - between {inputData.from}-
-                      {inputData.to} meters
+                      Distance from center - between {inputData.radius1}-
+                      {inputData.radius2} meters
                     </li>
                     <li className="text-[16px] font-medium mt-[7px]">
-                      Category - Bakery
+                      Category - {inputData.query_string}
                     </li>
                     <li className="text-[16px] font-medium mt-[7px]">
                       Search Limit - 500 NOS
-                    </li>
-                    <li className="text-[16px] font-medium mt-[7px]">
-                      Location - delhi
                     </li>
                   </ul>
                 </div>
@@ -61,27 +120,43 @@ const LandingPage = () => {
                   Refresh
                 </button>
               </div>
-              <button className="w-full text-white font-semibold bg-[#128437] h-[50px] mt-[10px]">
-                Search
+              <button
+                className="w-full text-white font-semibold bg-[#128437] h-[50px] mt-[10px]"
+                onClick={handleSearch}
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Search"}
               </button>
             </div>
           </div>
 
           <div className="w-full h-full px-4 bg-[#D3FFE6] mt-6 pb-6">
-            <p className="text-[18px] font-bold pt-[10px]">60 search results</p>
+            <p className="text-[18px] font-bold pt-[10px]">
+              {placeDetails.length} search results
+            </p>
             <div className="w-full md:grid md:grid-cols-2 lg:grid-cols-3 grid-flow-dense gap-2 ">
-              {products.map((product) => {
-                const { id, image, distance, describtion, name } = product;
+              {placeDetails.map((product) => {
+                const {
+                  placeId,
+                  photo_reference,
+                  address,
+                  website,
+                  place_name,
+                } = product;
                 return (
                   <div
-                    key={id}
+                    key={placeId}
                     className="w-[270px] md:w-[180px] lg:w-[200px] xl:w-[280px] 2xl:w-[300px] mt-[30px] h-[300px] bg-white rounded-[10px] text-black"
                   >
-                    <img src={image} alt="image" className="rounded-t-[10px]" />
+                    <img
+                      src={photo_reference}
+                      alt="image"
+                      className="rounded-t-[10px]"
+                    />
                     <div className="px-1">
-                      <p className="font-semibold text-[18px]">{name}</p>
-                      <p className="font-medium">{distance}</p>
-                      <p>{describtion}</p>
+                      <p className="font-semibold text-[18px]">{place_name}</p>
+                      <p className="font-medium">{address}</p>
+                      <p className="truncate">{website}</p>
                     </div>
                   </div>
                 );
