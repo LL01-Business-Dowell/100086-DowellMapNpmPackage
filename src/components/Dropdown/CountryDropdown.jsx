@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../../Context/PreviewContext";
+import PropTypes from "prop-types";
 
-export default function CountryDropdown() {
+export default function CountryDropdown({ loading }) {
   const { setInputData, inputData } = useGlobalContext();
   // const { data } = useQuery({
   //     queryFn: async () => FetchCountries("e0ab32cf-7bd2-47e7-b2af-2448262ec41e"),
@@ -270,16 +271,22 @@ export default function CountryDropdown() {
   const countries = data?.data[0]?.countries;
   return (
     <select
+      disabled={loading}
       id="country"
       name="country"
+      value={inputData.country}
       autoComplete="country-name"
       onChange={(e) => setInputData({ ...inputData, country: e.target.value })}
       className="block font-bold text-white w-full border-0 py-1.5 shadow-sm   sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none "
     >
       <option>Select country</option>
-      {countries.map((item) => (
-        <option key={item}>{item}</option>
+      {countries.map((item, index) => (
+        <option key={index}>{item}</option>
       ))}
     </select>
   );
 }
+
+CountryDropdown.propTypes = {
+  loading: PropTypes.bool.isRequired,
+};

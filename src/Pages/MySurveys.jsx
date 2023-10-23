@@ -2,12 +2,13 @@ import { useGlobalContext } from "../Context/PreviewContext";
 import CountryDropdown from "../components/Dropdown/CountryDropdown";
 import LocationDropdown from "../components/Dropdown/LocationDropdown";
 import Category from "../components/Categories";
+import PropTypes from "prop-types";
 
-export default function MySurveys() {
-  const { setInputData } = useGlobalContext();
+export default function MySurveys({ loading }) {
+  const { setInputData, inputData } = useGlobalContext();
   return (
     <>
-      <div className="relative md:ml-64">
+      <div className="relative">
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <div className="relative md:pt-32 pb-32 pt-12 ">
             <div className="mx-4 items-center flex justify-between flex-wrap">
@@ -26,13 +27,13 @@ export default function MySurveys() {
                 <div className="sm:col-span-3">
                   <div className="mt-2">
                     <div className="mt-2">
-                      <CountryDropdown />
+                      <CountryDropdown loading={loading} />
                     </div>
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <div className="mt-2">
-                    <LocationDropdown />
+                    <LocationDropdown loading={loading} />
                   </div>
                 </div>
               </div>
@@ -54,12 +55,14 @@ export default function MySurveys() {
                         type="text"
                         className="relative m-0 block w-24 flex-auto bg-[#D9D9D9] px-3 py-[0.25rem] outline-none"
                         placeholder="Meters"
+                        value={inputData.radius1}
                         onChange={(e) =>
                           setInputData((prevData) => ({
                             ...prevData,
-                            from: e.target.value,
+                            radius1: e.target.value,
                           }))
                         }
+                        disabled={loading}
                       />
                     </div>
                     <div className="relative mb-4 flex flex-wrap items-stretch">
@@ -70,12 +73,14 @@ export default function MySurveys() {
                         type="text"
                         className="relative m-0 block w-24 flex-auto bg-[#D9D9D9] px-3 py-[0.25rem] outline-none"
                         placeholder="Meters"
+                        value={inputData.radius2}
                         onChange={(e) =>
                           setInputData((prevData) => ({
                             ...prevData,
-                            to: e.target.value,
+                            radius2: e.target.value,
                           }))
                         }
+                        disabled={loading}
                       />
                     </div>
                   </div>
@@ -83,7 +88,7 @@ export default function MySurveys() {
               </div>
               <div className="w-full xl:w-4/12 px-4">
                 <div className="mt-2">
-                    <Category/>
+                  <Category loading={loading} />
                 </div>
               </div>
             </div>
@@ -93,3 +98,7 @@ export default function MySurveys() {
     </>
   );
 }
+
+MySurveys.propTypes = {
+  loading: PropTypes.bool.isRequired,
+};

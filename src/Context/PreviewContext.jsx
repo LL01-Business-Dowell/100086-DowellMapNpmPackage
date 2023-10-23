@@ -11,9 +11,9 @@ const PreviewProvider = ({ children }) => {
   const [inputData, setInputData] = useState({
     country: "",
     city: "",
-    category: "",
-    from: "",
-    to: "",
+    query_string: "",
+    radius1: "",
+    radius2: "",
   });
 
   const productUrl = "https://dowell-surveys-qr-2.onrender.com/qr-code/codes/";

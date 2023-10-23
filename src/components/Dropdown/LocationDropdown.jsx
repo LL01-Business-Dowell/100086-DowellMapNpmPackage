@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../../Context/PreviewContext";
+import PropTypes from "prop-types";
 
-export default function LocationDropdown() {
+export default function LocationDropdown({ loading }) {
   const { inputData, setInputData } = useGlobalContext();
   // const { data } = useQuery({
   //     queryFn: async () => FetchCountries("e0ab32cf-7bd2-47e7-b2af-2448262ec41e"),
@@ -1057,16 +1058,22 @@ export default function LocationDropdown() {
   const cities = data?.data;
   return (
     <select
+      disabled={loading}
       id="country"
       name="country"
+      value={inputData.city}
       autoComplete="country-name"
       onChange={(e) => setInputData({ ...inputData, city: e.target.value })}
       className="block font-bold text-white w-full border-0 py-1.5 shadow-sm   sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none "
     >
       <option>Select region</option>
-      {cities.map((item) => (
-        <option key={item}>{item.name}</option>
+      {cities.map((item, index) => (
+        <option key={index}>{item.name}</option>
       ))}
     </select>
   );
 }
+
+LocationDropdown.propTypes = {
+  loading: PropTypes.bool.isRequired,
+};
