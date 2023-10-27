@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "../Layout/Layout";
 import MySurveys from "./MySurveys";
 import MainMap from "../components/Map";
+import map from "../assets/Screenshot 2023-10-11 085143.png"
 import { useGlobalContext } from "../Context/PreviewContext";
 import FetchNearby from "../data/fetchNearby";
 import FetchPlaceDetail from "../data/fetchPlaceDetail";
@@ -16,6 +17,16 @@ const LandingPage = () => {
   //     queryKey: 'countries'
   // })
   //   console.log(data)
+  const searchOptions = {
+    radius1: inputData.radius1,
+    radius2: inputData.radius2,
+    center_lat: 51.50853,
+    center_lon: -0.12574,
+    query_string: inputData.query_string,
+    limit: "60",
+    api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
+  };
+
 
   const handleSearch = async () => {
     if (!isValidInput(inputData)) {
@@ -31,7 +42,7 @@ const LandingPage = () => {
         center_lon: -0.12574,
         query_string: inputData.query_string,
         limit: "60",
-        api_key: "api_key",
+        api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
       };
 
       const nearbyResults = await FetchNearby(searchOptions);
@@ -41,11 +52,12 @@ const LandingPage = () => {
         const placeDetailOptions = {
           place_id_list: nearbyResults.data.place_id_list,
           center_loc: "",
-          api_key: "api_key",
+          api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
         };
         const placeDetail = await FetchPlaceDetail(placeDetailOptions);
         console.log("first", placeDetail.data.succesful_results);
         setPlaceDetails(placeDetail.data.succesful_results);
+        console.log(placeDetail.data.succesful_results);
       }
     } catch (error) {
       // Handle errors
@@ -78,11 +90,14 @@ const LandingPage = () => {
     <Layout>
       <main className="w-full h-full mb-10">
         <MySurveys loading={loading} />
-        <div className="px-4 md:px-10 mt-[40px]">
-          <div className="flex">
-            <div className="mr-auto">
-              <MainMap />
-            </div>
+        {/* <MainMap/> */}
+        <div className="px-4 md:px-10 mt-[40px] md:pl-[310px]">
+        <div className="w-full flex"> 
+          <div>
+            {console.log("pageDetails",placeDetails)}
+            {placeDetails.length>0?<MainMap centerCords = {searchOptions} pins = {placeDetails}/>:null}
+            <p  className="h-[390px] lg:w-[400px] xl:w-[650px] " />
+          </div>
             <div className="w-[320px] ml-[25px]  ">
               <div className="w-full bg-[#7ED957] h-[270px]">
                 <p className="  h-[40px] text-white px-4 text-center font-semibold text-[20px]">
