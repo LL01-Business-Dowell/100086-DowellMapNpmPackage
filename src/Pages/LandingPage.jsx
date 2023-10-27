@@ -155,9 +155,9 @@ const LandingPage = () => {
                     className="w-[270px] md:w-[180px] lg:w-[200px] xl:w-[280px] 2xl:w-[300px] mt-[30px] h-[300px] bg-white rounded-[10px] text-black"
                   >
                     <img
-                      src={photo_reference}
+                      src={`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photo_reference}`}
                       alt="image"
-                      className="rounded-t-[10px]"
+                      className="rounded-t-[10px] w-full h-[150px]"
                     />
                     <div className="px-1">
                       <p className="font-semibold text-[18px]">{place_name}</p>
