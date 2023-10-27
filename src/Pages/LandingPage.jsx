@@ -9,13 +9,17 @@ import FetchPlaceDetail from "../data/fetchPlaceDetail";
 const LandingPage = () => {
   const { inputData, setInputData } = useGlobalContext();
   const [loading, setLoading] = useState(false);
-  const [placeIds, setPlaceIds] = useState([]);
   const [placeDetails, setPlaceDetails] = useState([]);
-  //   const { data } = useQuery({
-  //     queryFn: async () => FetchCountries(),
-  //     queryKey: 'countries'
-  // })
-  //   console.log(data)
+
+  const searchOptions = {
+    radius1: inputData.radius1,
+    radius2: inputData.radius2,
+    center_lat: 51.50853,
+    center_lon: -0.12574,
+    query_string: inputData.query_string,
+    limit: "60",
+    api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
+  };
 
   const handleSearch = async () => {
     if (!isValidInput(inputData)) {
@@ -31,20 +35,18 @@ const LandingPage = () => {
         center_lon: -0.12574,
         query_string: inputData.query_string,
         limit: "60",
-        api_key: "api_key",
+        api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
       };
 
       const nearbyResults = await FetchNearby(searchOptions);
-      console.log("nearby", nearbyResults.data.place_id_list);
       if (nearbyResults.data.place_id_list.length > 0) {
-        setPlaceIds(nearbyResults.data.place_id_list);
+        // setPlaceIds(nearbyResults.data.place_id_list);
         const placeDetailOptions = {
           place_id_list: nearbyResults.data.place_id_list,
           center_loc: "",
-          api_key: "api_key",
+          api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
         };
         const placeDetail = await FetchPlaceDetail(placeDetailOptions);
-        console.log("first", placeDetail.data.succesful_results);
         setPlaceDetails(placeDetail.data.succesful_results);
       }
     } catch (error) {
@@ -78,10 +80,14 @@ const LandingPage = () => {
     <Layout>
       <main className="w-full h-full mb-10">
         <MySurveys loading={loading} />
-        <div className="px-4 md:px-10 mt-[40px]">
-          <div className="flex">
-            <div className="mr-auto">
-              <MainMap />
+        {/* <MainMap/> */}
+        <div className="px-4 md:px-10 mt-[40px] md:pl-[310px]">
+          <div className="w-full flex">
+            <div>
+              {placeDetails.length > 0 ? (
+                <MainMap centerCords={searchOptions} pins={placeDetails} />
+              ) : null}
+              <p className="h-[390px] lg:w-[400px] xl:w-[650px] " />
             </div>
             <div className="w-[320px] ml-[25px]  ">
               <div className="w-full bg-[#7ED957] h-[270px]">
@@ -149,9 +155,9 @@ const LandingPage = () => {
                     className="w-[270px] md:w-[180px] lg:w-[200px] xl:w-[280px] 2xl:w-[300px] mt-[30px] h-[300px] bg-white rounded-[10px] text-black"
                   >
                     <img
-                      src={photo_reference}
+                      src={`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photo_reference}`}
                       alt="image"
-                      className="rounded-t-[10px]"
+                      className="rounded-t-[10px] w-full h-[150px]"
                     />
                     <div className="px-1">
                       <p className="font-semibold text-[18px]">{place_name}</p>

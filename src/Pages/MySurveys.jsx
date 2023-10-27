@@ -15,9 +15,9 @@ export default function MySurveys({ loading }) {
               <h1 className=" text-[#737373] text-3xl font-bold pt-1 pb-3 no-underline">
                 DoWell Surveys
               </h1>
-              <h6 className=" text-[#288437] text-sm font-bold pb-0 no-underline">
+              {/* <h6 className=" text-[#288437] text-sm font-bold pb-0 no-underline">
                 Samantha will do surveys in 150000 locations worldwide
-              </h6>
+              </h6> */}
             </div>
 
             <div className="h-1 mx-4 bg-[#A6A6A6]"></div>

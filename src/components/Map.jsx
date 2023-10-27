@@ -1,31 +1,42 @@
-import React from "react";
-import GoogleMapReact from 'google-map-react';
+import React, { useState } from "react";
+import GoogleMapReact from "google-map-react";
+import { ImLocation } from "react-icons/im";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+export default function MainMap({ centerCords, pins }) {
+  const Pins = () => (
+    <div>
+      <ImLocation color="red" size={30} />
+    </div>
+  );
 
-export default function MainMap(){
   const defaultProps = {
     center: {
-        lat: -0.17359,
-        lon: 34.9189,
+      lat: centerCords.center_lat ? centerCords.center_lat : 10.23295,
+      lng: centerCords.center_lon ? centerCords.center_lon : 10.28572,
     },
-    zoom: 11
+    zoom: 8,
   };
-
+  const getLatandLong = (coord_string) => {
+    // const lat_long = useState([]);
+    console.log("coordinates", coord_string.split(" , "));
+    return coord_string.split(" , ");
+  };
   return (
-    // Important! Always set the container height explicitly
-    <div style={{ height: '60vh', width: '50%' }}>
+    <div style={{ height: "50vh", width: "90%" }}>
       <GoogleMapReact
-        
         bootstrapURLKeys={{ key: "AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-        //   text={"My Marker"}
-        />
+        {pins.map((item) => (
+          <div>
+            <Pins
+              lat={parseFloat(getLatandLong(item.location_coord)[0])}
+              lng={parseFloat(getLatandLong(item.location_coord)[1])}
+            />
+          </div>
+        ))}
+        <Pins lat={51.4409868} lng={-0.06103330000000001} />
       </GoogleMapReact>
     </div>
   );
