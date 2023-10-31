@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { ImLocation } from "react-icons/im";
 
@@ -18,7 +17,7 @@ export default function MainMap({ centerCords, pins }) {
   };
   const getLatandLong = (coord_string) => {
     // const lat_long = useState([]);
-    console.log("coordinates", coord_string.split(" , "));
+    // console.log("coordinates", coord_string.split(" , "));
     return coord_string.split(" , ");
   };
   return (
@@ -29,7 +28,7 @@ export default function MainMap({ centerCords, pins }) {
         defaultZoom={defaultProps.zoom}
       >
         {pins.map((item) => (
-          <div>
+          <div key={item}>
             <Pins
               lat={parseFloat(getLatandLong(item.location_coord)[0])}
               lng={parseFloat(getLatandLong(item.location_coord)[1])}
