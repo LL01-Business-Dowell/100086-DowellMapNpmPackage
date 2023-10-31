@@ -5,16 +5,17 @@ import PreviewPage from "./PreviewPage";
 
 function App() {
   return (
-    <>
-      <PreviewProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/preview-page" element={<PreviewPage />} />
-          </Routes>
-        </Router>
-      </PreviewProvider>
-    </>
+    <LandingPage />
+    // <>
+    //   <PreviewProvider>
+    //     <Router>
+    //       <Routes>
+    //         <Route path="/" element={<LandingPage />} />
+    //         <Route path="/preview-page" element={<PreviewPage />} />
+    //       </Routes>
+    //     </Router>
+    //   </PreviewProvider>
+    // </>
   );
 }
 
