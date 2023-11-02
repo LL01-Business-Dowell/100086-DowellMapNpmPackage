@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact from "google-map-react";
 import { ImLocation } from "react-icons/im";
 import Marker from "./Marker";
 
