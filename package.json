@@ -10,13 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.2",
+    "@mapbox/point-geometry": "^0.1.0",
+    "addons": "^0.1.2",
     "axios": "^1.5.0",
+    "eventemitter3": "^5.0.1",
     "google-map-react": "^2.2.1",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
+    "react-addons": "^0.9.1-deprecated",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
     "react-icons": "^4.11.0",
+    "react-pure-render": "^1.0.2",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.16.0"
   },
