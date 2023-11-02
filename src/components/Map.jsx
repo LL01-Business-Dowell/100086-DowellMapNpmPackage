@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { ImLocation } from "react-icons/im";
 import Marker from "./Marker";
@@ -37,46 +36,26 @@ export default function MainMap({centerCords, pins}){
   };
   const getLatandLong = (coord_string) => {
     // const lat_long = useState([]);
-    // console.log("coordinates",coord_string.split(" , "))
-    return coord_string.split(" , ")
-  }
+    // console.log("coordinates", coord_string.split(" , "));
+    return coord_string.split(" , ");
+  };
   return (
-    <div style={{ height: '80vh', width: '100%' }}>
-
-    <GoogleMapReact
-      bootstrapURLKeys={{ key: "AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ"}}
-      center={defaultProps.center}
-      zoom={defaultProps.zoom}
-      options={createMapOptions}
-    
-      
-    >
-      {/* {Array.from
-        (new Set(
-          pins?.filter((datum)=> datum.location_coord))).map((item)=>(
-          <div>  
-         {console.log("item-12ski",item.location_coord[0])}         
-        <Pins
-                lat = {parseFloat(getLatandLong(item.location_coord)[0])}
-                lng  = {parseFloat(getLatandLong(item.location_coord)[1])}
-                />
-
-                </div>))} */}
-      {/* {pins.map((item)=>(
-        
-        <div>
-          <Pins
-                lat = {parseFloat(getLatandLong(item.location_coord)[0])}
-                lng  = {parseFloat(getLatandLong(item.location_coord)[1])}
-
-          />
-
-        </div>
-      ))}
-      <Pins lat={51.4409868} lng={-0.06103330000000001}/> */}
-      <Marker lat={51.4409868} lng={-0.06103330000000001} text={"B"}/>
-    </GoogleMapReact>
-
+    <div style={{ height: "50vh", width: "90%" }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        {/* {pins.map((item) => (
+          <div key={item}>
+            <Pins
+              lat={parseFloat(getLatandLong(item.location_coord)[0])}
+              lng={parseFloat(getLatandLong(item.location_coord)[1])}
+            />
+          </div>
+        ))} */}
+        <Marker lat={51.4409868} lng={-0.06103330000000001} text={"B"}/>
+      </GoogleMapReact>
     </div>
   );
 }
