@@ -45,6 +45,7 @@ export default function MainMap({centerCords, pins}){
         bootstrapURLKeys={{ key: "AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
+        options={createMapOptions}
       >
         {/* {pins.map((item) => (
           <div key={item}>
