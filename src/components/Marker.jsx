@@ -22,7 +22,8 @@ const K_WIDTH = 40;
 const K_HEIGHT = 40;
 
 const markerStyles = {
-    width: '20px',
+    position:"absolute",
+    // width: '20px',
     // height: '20px',
     background: 'red',
     borderRadius: '50%',

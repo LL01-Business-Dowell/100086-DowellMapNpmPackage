@@ -40,7 +40,7 @@ export default function MainMap({centerCords, pins}){
     return coord_string.split(" , ");
   };
   return (
-    <div style={{ height: "50vh", width: "90%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ" }}
         defaultCenter={defaultProps.center}
