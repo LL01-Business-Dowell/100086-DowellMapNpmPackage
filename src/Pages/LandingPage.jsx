@@ -6,22 +6,35 @@ import map from "../assets/Screenshot 2023-10-11 085143.png"
 import { useGlobalContext } from "../Context/PreviewContext";
 import FetchNearby from "../data/fetchNearby";
 import FetchPlaceDetail from "../data/fetchPlaceDetail";
+import SimpleMapPage from "../components/Clone/options_map_page";
 
 const LandingPage = () => {
   const { inputData, setInputData } = useGlobalContext();
   const [loading, setLoading] = useState(false);
   const [placeIds, setPlaceIds] = useState([]);
   const [placeDetails, setPlaceDetails] = useState([]);
+  const [nearbyResults, setNearbyResults] = useState();
   //   const { data } = useQuery({
   //     queryFn: async () => FetchCountries(),
   //     queryKey: 'countries'
   // })
   //   console.log(data)
+
   const searchOptions = {
     radius1: inputData.radius1,
     radius2: inputData.radius2,
     center_lat: 51.50853,
     center_lon: -0.12574,
+    query_string: inputData.query_string,
+    limit: "60",
+    api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
+  };
+
+  const defaultSearchOptions = {
+    radius1: inputData.radius1,
+    radius2: inputData.radius2,
+    center_lat: 29.40303,
+    center_lon: 73.60256,
     query_string: inputData.query_string,
     limit: "60",
     api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
@@ -34,7 +47,10 @@ const LandingPage = () => {
       return;
     }
     try {
+
       setLoading(true);
+
+      //Try commenting this so that only one 'search option' is defined. 
       const searchOptions = {
         radius1: inputData.radius1,
         radius2: inputData.radius2,
@@ -45,7 +61,7 @@ const LandingPage = () => {
         api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
       };
 
-      const nearbyResults = await FetchNearby(searchOptions);
+      setNearbyResults(await FetchNearby(searchOptions));
       console.log("nearby", nearbyResults.data.place_id_list);
       if (nearbyResults.data.place_id_list.length > 0) {
         setPlaceIds(nearbyResults.data.place_id_list);
@@ -94,8 +110,9 @@ const LandingPage = () => {
         <div className="px-4 md:px-10 mt-[40px] md:pl-[310px]">
         <div className="w-full flex"> 
           <div>
-            {console.log("pageDetails",placeDetails)}
-            {placeDetails.length>0?<MainMap centerCords = {searchOptions} pins = {placeDetails}/>:null}
+            {/* {console.log("pageDetails",nearbyResults)} */}
+            <MainMap centerCords = {searchOptions} pins = {placeDetails}/>
+
             <p  className="h-[390px] lg:w-[400px] xl:w-[650px] " />
           </div>
             <div className="w-[320px] ml-[25px]  ">
