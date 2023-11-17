@@ -46,7 +46,7 @@ const LandingPage = () => {
     }
     try {
 
-      setLoading(true);
+        setLoading(true);
 
       //Try commenting this so that only one 'search option' is defined. 
       const searchOptions = {
@@ -107,7 +107,9 @@ const LandingPage = () => {
         <div className="w-full flex"> 
           <div>
             {/* {console.log("pageDetails",nearbyResults)} */}
-            <MainMap centerCords = {searchOptions} pins = {placeDetails}/>
+            {placeDetails.length>0?<MainMap centerCords = {searchOptions} pins = {placeDetails}/>:<MainMap centerCords = {null} pins = {null}/>}
+            {console.log("Place Details",placeDetails)}
+            {console.log("search options",searchOptions)}
 
             <p  className="h-[390px] lg:w-[400px] xl:w-[650px] " />
           </div>
@@ -163,6 +165,7 @@ const LandingPage = () => {
               {placeDetails.length} search results
             </p>
             <div className="w-full md:grid md:grid-cols-2 lg:grid-cols-3 grid-flow-dense gap-2 ">
+              {console.log("placedetails",placeDetails)}
               {placeDetails.map((product) => {
                 const {
                   placeId,
@@ -177,7 +180,7 @@ const LandingPage = () => {
                     className="w-[270px] md:w-[180px] lg:w-[200px] xl:w-[280px] 2xl:w-[300px] mt-[30px] h-[300px] bg-white rounded-[10px] text-black"
                   >
                     <img
-                      src={`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photo_reference}`}
+                      src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=358&photo_reference=${photo_reference}&key=AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ`}
                       alt="image"
                       className="rounded-t-[10px] w-full h-[150px]"
                     />
