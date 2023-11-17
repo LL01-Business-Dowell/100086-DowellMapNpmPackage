@@ -12,6 +12,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
     "@mapbox/point-geometry": "^0.1.0",
+    "@vis.gl/react-google-maps": "^0.1.2",
     "addons": "^0.1.2",
     "axios": "^1.5.0",
     "eventemitter3": "^5.0.1",
