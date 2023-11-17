@@ -8,8 +8,8 @@ export default function MySurveys({ loading }) {
   const { setInputData, inputData } = useGlobalContext();
   return (
     <>
-      <div className="relative">
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+      <div className="relative ml-[60px]">
+        <div className="px-4 md:px-10 mx-auto w-full -m-24 md:pl-[20px]">
           <div className="relative md:pt-32 pb-32 pt-12 ">
             <div className="mx-4 items-center flex justify-between flex-wrap">
               <h1 className=" text-[#737373] text-3xl font-bold pt-1 pb-3 no-underline">

@@ -100,10 +100,10 @@ const LandingPage = () => {
 
   return (
     <Layout>
-      <main className="w-full h-full mb-10">
+      <main className="w-[91%]  h-full mb-10">
         <MySurveys loading={loading} />
         {/* <MainMap/> */}
-        <div className="px-4 md:px-10 mt-[40px] md:pl-[310px]">
+        <div className="px-4 md:px-10 mt-[40px] md:pl-[100px]">
         <div className="w-full flex"> 
           <div>
             {/* {console.log("pageDetails",nearbyResults)} */}
