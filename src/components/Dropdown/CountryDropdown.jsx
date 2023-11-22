@@ -1,5 +1,6 @@
 import { useGlobalContext } from "../../Context/PreviewContext";
 import PropTypes from "prop-types";
+import FetchCountryRegion from "../../data/fetchCountryRegion";
 
 export default function CountryDropdown({ loading }) {
   const { setInputData, inputData } = useGlobalContext();

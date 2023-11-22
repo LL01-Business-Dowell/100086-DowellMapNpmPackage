@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useGlobalContext } from "../Context/PreviewContext";
 
 export default async function FetchNearby(data) {
   return await axios.post(

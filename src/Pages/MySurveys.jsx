@@ -33,7 +33,7 @@ export default function MySurveys({ loading }) {
                 </div>
                 <div className="sm:col-span-3">
                   <div className="mt-2">
-                    <LocationDropdown loading={loading} />
+                    <LocationDropdown loading={loading} country={inputData.country} />
                   </div>
                 </div>
               </div>
