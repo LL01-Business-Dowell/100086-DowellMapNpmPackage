@@ -16,7 +16,7 @@ export default function MainMap({centerCords, pins}){
         },
       zoom: 12,
 };
-    
+
 
 
   return (
