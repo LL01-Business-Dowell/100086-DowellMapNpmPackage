@@ -1,53 +1,46 @@
-import GoogleMapReact from "google-map-react";
-import { ImLocation } from "react-icons/im";
-// import Marker from "./Marker";
-import {APIProvider, Map, Marker, useMapsLibrary, useMarkerRef} from '@vis.gl/react-google-maps';
-import { useCallback, useState,useEffect } from "react";
-import { useGlobalContext } from "../Context/PreviewContext";
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import { useEffect, useState } from 'react';
 
-export default function MainMap({centerCords, pins}){
-    const [markerRef, marker] = useMarkerRef();
-    const [clicked, setClicked] = useState(false);
+const MainMap = ({ centerCords, pins }) => {
+  const [mapCenter, setMapCenter] = useState({ lat: 0.46005, lng: 42.11169 });
+  const [mapKey, setMapKey] = useState(0);
 
-    const defaultProps = {
-      center: {
-          lat: centerCords?centerCords.center_lat:51.50853,
-          lng: centerCords?centerCords.center_lon:-0.12574,
-        },
-      zoom: 12,
-};
+  const handleMapLoad = (map) => {
+    // Now you can use the map instance here
+    console.log("Map instance:", map);
+  };
 
-
+  useEffect(() => {
+    if (centerCords) {
+      setMapCenter({ lat: centerCords.lat, lng: centerCords.lng });
+      // Update the key to force re-render when the center changes
+      setMapKey((prevKey) => prevKey + 1);
+    }
+  }, [centerCords]);
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-     <APIProvider apiKey={"AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ"}>
-      
+      <APIProvider apiKey={'AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ'}>
         <Map
-         
-          zoom={defaultProps.zoom}
-          center={defaultProps.center}
-          gestureHandling={'greedy'}      
-          // disableDefaultUI={true}
+          id={"mymap"}
+          key={mapKey} // Add a key to force re-render
+          zoom={10}
+          center={mapCenter}
+          onLoad={handleMapLoad}
         >
-
-          {pins?.map((value,key)=>{
+          {pins?.map((value, key) => {
             const cords = value.location_coord.split(" , ");
-              return(
-                //add animation for the markers
-                  <Marker animation={clicked?1:0} onClick={()=>setClicked(!clicked)} ref={markerRef} position={{lat: Number(cords[0]), lng: Number(cords[1])}} />
-
-                  )
-
-            })}
-          
+            return (
+              <Marker
+                key={key}
+                position={{ lat: Number(cords[0]), lng: Number(cords[1]) }}
+              />
+            );
+          })}
         </Map>
-    </APIProvider>
-
+      </APIProvider>
     </div>
   );
-}
+};
 
-
-
-
+export default MainMap;
