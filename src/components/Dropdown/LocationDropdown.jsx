@@ -2,21 +2,37 @@ import { useGlobalContext } from "../../Context/PreviewContext";
 import PropTypes from "prop-types";
 import { useQuery } from "react-query";
 import FetchCountryRegion from "../../data/fetchCountryRegion";
+import { useEffect, useState } from "react";
 
 export default function LocationDropdown({ loading, country }) {
-  const { inputData, setInputData, setCenterCoords, centerCoords } = useGlobalContext();
+  const { inputData, setInputData, setCenterCoords, centerCoords,api_key } = useGlobalContext();
+  const [all_cities,setCities] = useState();
   // const { data:regions } = useQuery({
   //     queryFn: async () => FetchCountryRegion( "e0ab32cf-7bd2-47e7-b2af-2448262ec41e", country),
-  //     queryKey: 'regions'
-      
-  // }, [inputData.country])
-  const regions = null;
+  //     queryKey: 'regions',
+
+  //     enabled: !!inputData.country
+  // })
+
+  useEffect(()=>{
+    async function getCities(){
+      const regions = await FetchCountryRegion(api_key,country);
+      setCities(regions?.data?.data)
+      console.log("key",api_key)
+      console.log(country)
+      console.log("all_cities",all_cities)
+
+    }
+    getCities()
+
+  },[country])
+  // const regions = null;
   // console.log("country",country)
-  // console.log("regions",regions)
+
 
   const handleChange=(e)=> {
-    setInputData({ ...inputData, city: cities[e.target.value].name })
-    setCenterCoords({...centerCoords, lat: cities[e.target.value].lat, lon:cities[e.target.value].lon})
+    setInputData({ ...inputData, city: all_cities[e.target.value].name })
+    setCenterCoords({...centerCoords, lat: all_cities[e.target.value].lat, lon:all_cities[e.target.value].lon})
     console.log("coords after change",centerCoords
   )
   }
@@ -1080,7 +1096,7 @@ export default function LocationDropdown({ loading, country }) {
       className="block font-bold text-white w-full border-0 py-1.5 shadow-sm   sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none "
     >
       <option>Select region</option>
-      {cities?.map((item, index) => (
+      {all_cities?.map((item, index) => (
         <option value={index} key={index}>{item.name}</option>
       ))}
     </select>
