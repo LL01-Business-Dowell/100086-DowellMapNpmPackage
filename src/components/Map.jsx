@@ -1,7 +1,9 @@
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import { useEffect, useState } from 'react';
+import { useGlobalContext } from '../Context/PreviewContext';
 
 const MainMap = ({ centerCords, pins }) => {
+  const {mapAPIKey} = useGlobalContext();
   const [mapCenter, setMapCenter] = useState({ lat: 0.46005, lng: 42.11169 });
   const [mapKey, setMapKey] = useState(0);
 
@@ -20,7 +22,7 @@ const MainMap = ({ centerCords, pins }) => {
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <APIProvider apiKey={'AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ'}>
+      <APIProvider apiKey={mapAPIKey}>
         <Map
           id={"mymap"}
           key={mapKey} // Add a key to force re-render
