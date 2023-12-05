@@ -10,7 +10,7 @@ import SimpleMapPage from "../components/Clone/options_map_page";
 const LandingPage = () => {
   const { inputData, setInputData, setAPIKey, api_key, setCenterCoords, centerCoords } = useGlobalContext();
   const [loading, setLoading] = useState(false);
-  const [receivedKey, setRecievedKey] = useState(false);
+  const [receivedKey, setRecievedKey] = useState("EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr");
   const [placeDetails, setPlaceDetails] = useState([]);
   const [nearbyResults, setNearbyResults] = useState();
   
@@ -19,17 +19,21 @@ const LandingPage = () => {
   //     queryKey: 'countries'
   // })
   //   console.log(data)
-  const validateKey = (api_key) =>{
-    return (api_key === "");
-  }
-  const saveAPIkey = async () => {
-    if (validateKey(api_key)){
-      alert("Please provide an API key")
-    } else {
-    // alert(api_key)
-    setRecievedKey(true);
-    }
-  }
+
+  // const validateKey = (api_key) =>{
+  //   return (api_key === "");
+  // }
+  // const saveAPIkey = async () => {
+  //   if (validateKey(api_key)){
+  //     alert("Please provide an API key")
+  //   } else if (api_key.length<36){
+  //     alert("Please input a valid API_key")
+  //   } 
+  //   else {
+  //   // alert(api_key)
+  //   setRecievedKey(true);
+  //   }
+  // }
 
   const centerParams = {
     center_lat: centerCoords.lat,
@@ -72,6 +76,7 @@ const LandingPage = () => {
       };
 
       setNearbyResults(await FetchNearby(searchOptions));
+      console.log("coordinates used for the search are", centerCoords.lat,centerCoords.lon)
       console.log("nearby", nearbyResults.data.place_id_list);
       if (nearbyResults.data.place_id_list.length > 0) {
         // setPlaceIds(nearbyResults.data.place_id_list);
@@ -111,7 +116,7 @@ const LandingPage = () => {
   };
 
   return (
-    receivedKey?
+    (receivedKey != "ENTER API KEY")?
     <Layout>
       <main className="w-[91%]  h-full mb-10">
         <MySurveys loading={loading} />
@@ -120,7 +125,13 @@ const LandingPage = () => {
         <div className="w-full flex"> 
           <div>
             {/* {console.log("pageDetails",nearbyResults)} */}
-            {placeDetails.length>0?<MainMap centerCords = {centerParams} pins = {placeDetails}/>:<MainMap centerCords = {null} pins = {null}/>}
+            {placeDetails.length>0?<MainMap centerCords={ {
+            lat:centerCoords.lat,
+            lng:centerCoords.lon
+              }}  pins = {placeDetails}/>:<MainMap  pins = {null}/>}
+
+
+            
             {console.log("Place Details",placeDetails)}
             {console.log("search options",centerParams)}
 
@@ -211,13 +222,9 @@ const LandingPage = () => {
       </main>
     </Layout>:
     <div class="flex justify-center mt-60 items-center bg-white ">
-        <form>
         <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4 grid-cols-12">
-          <input className="pl-2  outline-none border-none text-center mx-12 w-[90%] " onChange={(e)=>setAPIKey(e.target.value)} type="text" placeholder="Enter your API key" />
-          {console.log("center_coords",centerCoords.lat, centerCoords.lon)}
-          <input type="submit" onClick={()=>saveAPIkey()} class="cursor-pointer text-white hover:bg-green-900 bg-green-500 px-10 py-6 rounded-xl" />
+              <h3>Enter your API Key</h3>
         </div>
-        </form>
     </div>
   );
 };
