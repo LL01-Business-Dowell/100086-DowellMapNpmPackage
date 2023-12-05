@@ -8,7 +8,7 @@ const PreviewContext = React.createContext();
 const PreviewProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [surveys, setSurveys] = useState([]);
-  const [api_key, setAPIKey]  = useState("");
+  const [api_key, setAPIKey]  = useState("e0ab32cf-7bd2-47e7-b2af-2448262ec41e");
   const [centerCoords, setCenterCoords]  = useState({
     lat:"",
     lon:"",
