@@ -2,6 +2,7 @@ import LandingPage from "./Pages/LandingPage";
 import { PreviewProvider } from "./Context/PreviewContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PreviewPage from "./PreviewPage";
+import MapUpdate from "./components/Map";
 
 function App() {
   return (
