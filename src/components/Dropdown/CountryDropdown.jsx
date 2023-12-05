@@ -1,13 +1,23 @@
 import { useGlobalContext } from "../../Context/PreviewContext";
 import PropTypes from "prop-types";
-import FetchCountryRegion from "../../data/fetchCountryRegion";
+import { useEffect, useState } from "react";
+import FetchCountries from "../../data/fetchCountries";
 
 export default function CountryDropdown({ loading }) {
-  const { setInputData, inputData } = useGlobalContext();
+  const { setInputData, inputData, api_key } = useGlobalContext();
+  const [allCountries, setAllCountries] = useState();
   // const { data } = useQuery({
-  //     queryFn: async () => FetchCountries("e0ab32cf-7bd2-47e7-b2af-2448262ec41e"),
+  //     queryFn: async () => FetchCountries(""),
   //     queryKey: 'countries'
   // }, [])
+  useEffect(()=>{
+    async function getCountries(){
+      const response = await FetchCountries(api_key);
+      setAllCountries(response?.data?.data?.countries)
+      
+    }
+    getCountries();
+  },[])
   const data = {
     data: [
       {
@@ -281,7 +291,7 @@ export default function CountryDropdown({ loading }) {
       className="block font-bold text-white w-full border-0 py-1.5 shadow-sm   sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none "
     >
       <option>Select country</option>
-      {countries.map((item, index) => (
+      {allCountries.map((item, index) => (
         <option key={index}>{item}</option>
       ))}
     </select>
