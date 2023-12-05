@@ -9,9 +9,14 @@ const PreviewProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [surveys, setSurveys] = useState([]);
 
-  //Please provide your API Key here
+  //Please provide your Datacube API Key here
   const [api_key, setAPIKey]  = useState("");
-  
+
+  //API key for place details
+
+  //Google maps API Key
+  const [mapAPIKey, setMapAPIKey] = useState("");
+
   const [centerCoords, setCenterCoords]  = useState({
     lat:"",
     lon:"",
@@ -54,7 +59,8 @@ const PreviewProvider = ({ children }) => {
         setAPIKey,
         api_key,
         setCenterCoords,
-        centerCoords
+        centerCoords,
+        mapAPIKey
       }}
     >
       {children}
