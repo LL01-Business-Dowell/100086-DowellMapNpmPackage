@@ -11,7 +11,7 @@ const MainMap = ({ centerCords, pins }) => {
   };
 
   useEffect(() => {
-    if (centerCords) {
+    if (centerCords ) {
       setMapCenter({ lat: centerCords.lat, lng: centerCords.lng });
       // Update the key to force re-render when the center changes
       setMapKey((prevKey) => prevKey + 1);
@@ -24,7 +24,7 @@ const MainMap = ({ centerCords, pins }) => {
         <Map
           id={"mymap"}
           key={mapKey} // Add a key to force re-render
-          zoom={10}
+          zoom={12}
           center={mapCenter}
           onLoad={handleMapLoad}
         >
@@ -32,6 +32,7 @@ const MainMap = ({ centerCords, pins }) => {
             const cords = value.location_coord.split(" , ");
             return (
               <Marker
+                onClick={()=>setKeyAnimate(true)}
                 key={key}
                 position={{ lat: Number(cords[0]), lng: Number(cords[1]) }}
               />
