@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-require('dotenv').config();
 
 const PreviewContext = React.createContext();
 
@@ -11,13 +10,13 @@ const PreviewProvider = ({ children }) => {
   const [surveys, setSurveys] = useState([]);
 
   //Please provide your Datacube API Key here
-  const [api_key, setAPIKey]  = useState("");
+  const [api_key, setAPIKey]  = useState(import.meta.env.VITE_DATACUBE_API_KEY);
 
   //API key for place details
-  const [placeAPIKey, setPlaceAPIKey] = useState("EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr");
+  const [placeAPIKey, setPlaceAPIKey] = useState(import.meta.env.VITE_PLACES_API_KEY);
 
   //Google maps API Key
-  const [mapAPIKey, setMapAPIKey] = useState("AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ");
+  const [mapAPIKey, setMapAPIKey] = useState(import.meta.env.VITE_GOOGLE_MAPS_API);
 
   const [centerCoords, setCenterCoords]  = useState({
     lat:"",
