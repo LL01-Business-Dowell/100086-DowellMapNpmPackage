@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+require('dotenv').config();
 
 const PreviewContext = React.createContext();
 
@@ -13,9 +14,10 @@ const PreviewProvider = ({ children }) => {
   const [api_key, setAPIKey]  = useState("");
 
   //API key for place details
+  const [placeAPIKey, setPlaceAPIKey] = useState("EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr");
 
   //Google maps API Key
-  const [mapAPIKey, setMapAPIKey] = useState("");
+  const [mapAPIKey, setMapAPIKey] = useState("AIzaSyAsH8omDk8y0lSGLTW9YtZiiQ2MkmsF-uQ");
 
   const [centerCoords, setCenterCoords]  = useState({
     lat:"",
@@ -60,7 +62,8 @@ const PreviewProvider = ({ children }) => {
         api_key,
         setCenterCoords,
         centerCoords,
-        mapAPIKey
+        mapAPIKey,
+        placeAPIKey
       }}
     >
       {children}

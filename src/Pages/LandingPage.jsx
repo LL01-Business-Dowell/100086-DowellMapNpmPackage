@@ -8,7 +8,7 @@ import FetchPlaceDetail from "../data/fetchPlaceDetail";
 import SimpleMapPage from "../components/Clone/options_map_page";
 
 const LandingPage = () => {
-  const { inputData, setInputData, setAPIKey, api_key, setCenterCoords, centerCoords } = useGlobalContext();
+  const { inputData, setInputData, setAPIKey, api_key, setCenterCoords, centerCoords, placeAPIKey } = useGlobalContext();
   const [loading, setLoading] = useState(false);
   const [receivedKey, setRecievedKey] = useState("EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr");
   const [placeDetails, setPlaceDetails] = useState([]);
@@ -72,9 +72,9 @@ const LandingPage = () => {
         center_lon: centerCoords.lon,
         query_string: inputData.query_string,
         limit: "60",
-        api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
+        api_key: placeAPIKey,
       };
-
+    
       setNearbyResults(await FetchNearby(searchOptions));
       console.log("coordinates used for the search are", centerCoords.lat,centerCoords.lon)
       console.log("nearby", nearbyResults.data.place_id_list);
@@ -83,7 +83,7 @@ const LandingPage = () => {
         const placeDetailOptions = {
           place_id_list: nearbyResults.data.place_id_list,
           center_loc: "",
-          api_key: "EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr",
+          api_key:placeAPIKey,
         };
         const placeDetail = await FetchPlaceDetail(placeDetailOptions);
         setPlaceDetails(placeDetail.data.succesful_results);
@@ -133,7 +133,6 @@ const LandingPage = () => {
 
             
             {console.log("Place Details",placeDetails)}
-            {console.log("search options",centerParams)}
 
             <p  className="h-[390px] lg:w-[400px] xl:w-[650px] " />
           </div>

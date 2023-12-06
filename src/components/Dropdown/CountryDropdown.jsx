@@ -13,7 +13,8 @@ export default function CountryDropdown({ loading }) {
   useEffect(()=>{
     async function getCountries(){
       const response = await FetchCountries(api_key);
-      setAllCountries(response?.data?.data?.countries)
+      setAllCountries(response?.data?.data[0]?.countries)
+      console.log(response?.data?.data[0]?.countries)
       
     }
     getCountries();
@@ -291,7 +292,7 @@ export default function CountryDropdown({ loading }) {
       className="block font-bold text-white w-full border-0 py-1.5 shadow-sm   sm:max-w-xs sm:text-sm sm:leading-6 bg-[#FF3131] outline-none "
     >
       <option>Select country</option>
-      {allCountries.map((item, index) => (
+      {allCountries?.map((item, index) => (
         <option key={index}>{item}</option>
       ))}
     </select>
