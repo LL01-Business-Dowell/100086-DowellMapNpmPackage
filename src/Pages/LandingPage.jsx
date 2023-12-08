@@ -12,7 +12,7 @@ const LandingPage = () => {
   const [loading, setLoading] = useState(false);
   const [receivedKey, setRecievedKey] = useState("EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr");
   const [placeDetails, setPlaceDetails] = useState([]);
-  const [nearbyResults, setNearbyResults] = useState();
+  const [nearbyResults, setNearbyResults] = useState([]);
   
   //   const { data } = useQuery({
   //     queryFn: async () => FetchCountries(),
@@ -74,14 +74,15 @@ const LandingPage = () => {
         limit: "60",
         api_key: placeAPIKey,
       };
-    
-      setNearbyResults(await FetchNearby(searchOptions));
+      const response = await FetchNearby(searchOptions)
+      console.log("response_data",response.data.place_id_list)
+      setNearbyResults(response.data.place_id_list)
       console.log("coordinates used for the search are", centerCoords.lat,centerCoords.lon)
-      console.log("nearby", nearbyResults.data.place_id_list);
-      if (nearbyResults.data.place_id_list.length > 0) {
+      console.log("nearby", nearbyResults);
+      if (response.data.place_id_list?.length>0) {
         // setPlaceIds(nearbyResults.data.place_id_list);
         const placeDetailOptions = {
-          place_id_list: nearbyResults.data.place_id_list,
+          place_id_list: response.data.place_id_list,
           center_loc: "",
           api_key:placeAPIKey,
         };
@@ -92,6 +93,7 @@ const LandingPage = () => {
       // Handle errors
       console.error("Error:", error);
     } finally {
+      console.log("finally block executed")
       setLoading(false);
       setInputData((prevData) => ({
         ...prevData,
