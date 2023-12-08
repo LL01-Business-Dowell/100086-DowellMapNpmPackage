@@ -18,9 +18,9 @@ export default function LocationDropdown({ loading, country }) {
     async function getCities(){
       const regions = await FetchCountryRegion(api_key,country);
       setCities(regions?.data?.data)
-      console.log("key",api_key)
-      console.log(country)
-      console.log("all_cities",all_cities)
+      // console.log("key",api_key)
+      // console.log(country)
+      // console.log("all_cities",all_cities)
 
     }
     getCities()
