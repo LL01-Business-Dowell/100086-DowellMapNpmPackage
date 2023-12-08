@@ -16,7 +16,7 @@ const PreviewProvider = ({ children }) => {
   const [placeAPIKey, setPlaceAPIKey] = useState(import.meta.env.VITE_PLACES_API_KEY);
 
   //Google maps API Key
-  const [mapAPIKey, setMapAPIKey] = useState(import.meta.env.VITE_GOOGLE_MAPS_API);
+  const [mapAPIKey, setMapAPIKey] = useState(import.meta.env.VITE_GOOGLE_API);
 
   const [centerCoords, setCenterCoords]  = useState({
     lat:"",
