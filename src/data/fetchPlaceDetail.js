@@ -6,3 +6,5 @@ export default async function FetchPlaceDetail(data) {
     data
   );
 }
+
+
