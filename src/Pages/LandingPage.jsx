@@ -95,14 +95,7 @@ const LandingPage = () => {
     } finally {
       console.log("finally block executed")
       setLoading(false);
-      setInputData((prevData) => ({
-        ...prevData,
-        country: "",
-        city: "",
-        radius1: "",
-        radius2: "",
-        query_string: "",
-      }));
+      
     }
   };
 
