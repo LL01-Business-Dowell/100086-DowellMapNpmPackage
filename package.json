@@ -10,6 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "main": "main.jsx",
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
     "@mapbox/point-geometry": "^0.1.0",
@@ -18,6 +19,7 @@
     "addons": "^0.1.2",
     "axios": "^1.5.0",
     "dotenv": "^16.3.1",
+    "dowell-living-lab-maps": "file:../dowell-living-lab-maps",
     "eventemitter3": "^5.0.1",
     "google-map-react": "^2.2.1",
     "http-proxy": "^1.18.1",
@@ -35,7 +37,7 @@
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.3",
+    "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
@@ -43,6 +45,6 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.5"
+    "vite": "^4.2.0"
   }
 }

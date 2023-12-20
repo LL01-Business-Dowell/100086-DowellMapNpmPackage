@@ -8,7 +8,9 @@ import FetchPlaceDetail from "../data/fetchPlaceDetail";
 import SimpleMapPage from "../components/Clone/options_map_page";
 
 const LandingPage = () => {
-  const { inputData, setInputData, setAPIKey, api_key, setCenterCoords, centerCoords, placeAPIKey } = useGlobalContext();
+  const context = useGlobalContext();
+  console.log("context Value: ",context)
+  const { inputData, setInputData, setAPIKey, api_key, setCenterCoords, centerCoords, placeAPIKey } = context;
   const [loading, setLoading] = useState(false);
   const [receivedKey, setRecievedKey] = useState("EhdQUTM2K0hNLCBOYWlyb2JpLCBLZW55YSImOiQKCg2PPDr");
   const [placeDetails, setPlaceDetails] = useState([]);
