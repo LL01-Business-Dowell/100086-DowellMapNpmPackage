@@ -9,8 +9,9 @@ Welcome to Dowell Living Labs Maps!  This package will show you the nearest loca
 
 ### Installation 
 Install the package using npm:
+```bash
     npm install dowell-living-lab-maps
-
+```
 ### Requirements
 .env 
 This file should be in your root directory and should have the following data:
@@ -27,7 +28,7 @@ VITE_DATACUBE_API_KEY = "YOUR DATACUBE API KEY FROM DOWELL API"
 Import the package and search for categories in specific regions. Preferrably call in your App.jsx, which should have a similar structure below:
 
 
-```
+```js
 import LandingPage from 'dowell-living-lab-maps/Pages/LandingPage';
 import {  PreviewProvider } from 'dowell-living-lab-maps/Context/PreviewContext';
 
