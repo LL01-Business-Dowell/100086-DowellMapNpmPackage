@@ -22,6 +22,7 @@ const MainMap = ({ centerCords, pins }) => {
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
+      {console.log("api_key",mapAPIKey)}
       <APIProvider apiKey={mapAPIKey}>
         <Map
           id={"mymap"}
