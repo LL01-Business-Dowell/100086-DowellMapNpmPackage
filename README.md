@@ -10,7 +10,7 @@ Welcome to Dowell Living Labs Maps!  This package will show you the nearest loca
 ### Installation 
 Install the package using npm:
 ```bash
-    npm install dowell-living-lab-maps
+    npm install @dowelllabs/dowell-living-lab-maps
 ```
 ### Requirements
 .env 
