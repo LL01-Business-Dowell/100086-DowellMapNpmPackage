@@ -29,8 +29,8 @@ Import the package and search for categories in specific regions. Preferrably ca
 
 
 ```js
-import LandingPage from 'dowell-living-lab-maps/Pages/LandingPage';
-import {  PreviewProvider } from 'dowell-living-lab-maps/Context/PreviewContext';
+import LandingPage from '@dowelllabs/dowell-living-lab-maps/Pages/LandingPage';
+import {  PreviewProvider } from '@dowelllabs/dowell-living-lab-maps/Context/PreviewContext';
 
 function App() {
   return (
