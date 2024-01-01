@@ -18,10 +18,11 @@ This file should be in your root directory and should have the following data:
 ```
 VITE_GOOGLE_API = "YOUR GOOGLE API KEY"
 
-VITE_PLACES_API_KEY = "YOUR PLACES API KEY FROM DOWELL APIs"
+VITE_DOWELL_API_KEY = "YOUR DOWELL API KEY FROM DOWELL APIs"
 
-VITE_DATACUBE_API_KEY = "YOUR DATACUBE API KEY FROM DOWELL APIs"
 ```
+####
+For the Dowell API key, you need to have the DATACUBE API  and the PLACES API services activated.
 
 ### Usage 
 
