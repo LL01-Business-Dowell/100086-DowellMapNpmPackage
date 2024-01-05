@@ -1,4 +1,4 @@
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, Marker, GroundOverlay } from '@vis.gl/react-google-maps';
 import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../Context/PreviewContext';
 
@@ -21,7 +21,7 @@ const MainMap = ({ centerCords, pins }) => {
   }, [centerCords]);
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div style={{ height: "85vh", width: "100vh" }}>
       <APIProvider apiKey={mapAPIKey}>
         <Map
           id={"mymap"}
@@ -33,11 +33,14 @@ const MainMap = ({ centerCords, pins }) => {
           {pins?.map((value, key) => {
             const cords = value.location_coord.split(" , ");
             return (
+              <div>
+              <GroundOverlay/>
               <Marker
                 onClick={()=>setKeyAnimate(true)}
                 key={key}
                 position={{ lat: Number(cords[0]), lng: Number(cords[1]) }}
               />
+              </div>
             );
           })}
         </Map>

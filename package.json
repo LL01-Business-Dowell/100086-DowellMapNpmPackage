@@ -12,6 +12,7 @@
   },
   "main": "main.jsx",
   "dependencies": {
+    "@dowelllabs/dowell-living-lab-maps": "^1.0.0",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@mapbox/point-geometry": "^0.1.0",
     "@react-google-maps/api": "^2.19.2",
