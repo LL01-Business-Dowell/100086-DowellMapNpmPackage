@@ -1,4 +1,4 @@
-import { APIProvider, Map, Marker, GroundOverlay } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../Context/PreviewContext';
 
@@ -34,7 +34,6 @@ const MainMap = ({ centerCords, pins }) => {
             const cords = value.location_coord.split(" , ");
             return (
               <div>
-              <GroundOverlay/>
               <Marker
                 onClick={()=>setKeyAnimate(true)}
                 key={key}

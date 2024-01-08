@@ -32,23 +32,7 @@ const PreviewProvider = ({ children }) => {
 
   const productUrl = "https://dowell-surveys-qr-2.onrender.com/qr-code/codes/";
 
-  const fetchApi = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(productUrl);
-      setLoading(false);
-      const products = response.data;
-      setSurveys(products);
-      console.log("working", setSurveys);
-    } catch (error) {
-      setLoading(false);
-      console.log("not working", error);
-    }
-  };
 
-  useEffect(() => {
-    fetchApi();
-  }, []);
 
   return (
     <PreviewContext.Provider

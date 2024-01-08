@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../Layout/Layout";
 import MainMap from "../components/Map";
 import { useGlobalContext } from "../Context/PreviewContext";
+import { io } from 'socket.io-client';
 
 const LandingPage = () => {
+
   const context = useGlobalContext();
-  console.log("context Value: ",context)
+
   const { centerCoords } = context;
   const [dataFromServer, setDataFromServer] = useState(null);
   
@@ -16,31 +18,41 @@ const LandingPage = () => {
   // };
 
 
-  // instance of websocket connection as a state
-  const [ws, setWs] = useState(new WebSocket('ws://localhost:3000/ws'));
+  
+  useEffect(() => {
+      // Connect to the Socket.IO server
+      const socket = io('http://localhost:3001/socket');
 
-  const updateLocation =(event)=>{
-    setDataFromServer(event)
-  }
-  ws.addEventListener("open", (event) => {
-    socket.send("Hello Server!");
-  })
-  ws.addEventListener("message", (event) => {
-    updateLocation(event)
+      // Event listener for successful connection
+      socket.on('connect', () => {
+        console.log('Connected to Socket.IO server');
+        socket.emit('clientMessage', 'Hello Server!'); // Send a message to the server
+      });
+  
+      // Event listener for receiving messages from the server
+      socket.on('serverMessage', (message) => {
+        console.log('Received message from server:', message);
+        // Update your component state or perform other actions with the received data
+      });
+  
+      // Event listener for Socket.IO errors
+      socket.on('error', (error) => {
+        console.error('Socket.IO error:', error);
+        // Handle error state or reconnect logic here
+      });
+  
+      // Event listener for Socket.IO disconnection
+      socket.on('disconnect', () => {
+        console.log('Disconnected from Socket.IO server');
+      });
+  
+      // Clean up the socket connection when the component unmounts
+      return () => {
+        socket.disconnect();
+      };
+    })
     
-  })
-
-  // Error handling
-  ws.addEventListener('error', (error) => {
-    console.error('WebSocket error:', error);
-    // Handle error state or reconnect logic here
-  });
-
-  // Close WebSocket connection on component unmount
-  ws.onclose = () => {
-    console.log('WebSocket connection closed');
-  };
-
+  
 
   return (
     <Layout>
