@@ -1,6 +1,6 @@
 /node_modules
 .babelrc
-webpack.config.js
+# webpack.config.js
 # Logs
 logs
 *.log
