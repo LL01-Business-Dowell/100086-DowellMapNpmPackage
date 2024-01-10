@@ -1,5 +1,5 @@
-import LandingPage from "./Pages/LandingPage";
-import { PreviewProvider } from "./Context/PreviewContext";
+import LandingPage from "./Pages/LandingPage.jsx";
+import { PreviewProvider } from "./Context/PreviewContext.jsx";
 function App() {
   return (
     <PreviewProvider>

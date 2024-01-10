@@ -2,10 +2,11 @@
   "homepage": "https://github.com/LL01-Business-Dowell/100086-DowellMapNpmPackage/tree/dowell-living-lab-maps",
   "name": "@dowelllabs/dowell-living-lab-maps",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/main.jsx",
+  "description": "Welcome to Dowell Living Labs Maps!  This package will show you the nearest locations and also help you gather data about the same after a search.",
+  "main": "build/index.js",
   "scripts": {
-    "build": "webpack"
+    "dev": "vite",
+    "build": "webpack --config webpack.config.js"
   },
   "exports": {
     ".": "./src/main.jsx",
@@ -14,13 +15,11 @@
   },
   "keywords": [],
   "dependencies": {
-    "@babel/core": "^7.23.6",
-    "@babel/preset-env": "^7.23.6",
-    "@babel/preset-react": "^7.23.3",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@mapbox/point-geometry": "^0.1.0",
     "@react-google-maps/api": "^2.19.2",
     "@vis.gl/react-google-maps": "^0.1.2",
+    "@vitejs/plugin-react": "^4.2.1",
     "addons": "^0.1.2",
     "axios": "^1.5.0",
     "babel-loader": "^9.1.3",
@@ -57,5 +56,12 @@
     "vite": "^4.2.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LL01-Business-Dowell/100086-DowellMapNpmPackage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LL01-Business-Dowell/100086-DowellMapNpmPackage/issues"
+  }
 }
