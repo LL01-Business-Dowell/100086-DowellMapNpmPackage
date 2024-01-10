@@ -113,7 +113,7 @@ module.exports = {
 }
 ```
 
-## Or else if you haven't configured tailwind with your application, 
+## If you don't have tailwind  configured, 
 ### create a "tailwind.config.js" file in your root directory and add the following code to it
 ```js
 /** @type {import('tailwindcss').Config} */
