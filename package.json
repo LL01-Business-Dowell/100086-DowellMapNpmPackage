@@ -11,7 +11,17 @@
   "exports": {
     ".": "./src/main.jsx",
     "./Context/PreviewContext": "./src/Context/PreviewContext.jsx",
-    "./Pages/LandingPage": "./src/Pages/LandingPage.jsx"
+    "./Pages/LandingPage": "./src/Pages/LandingPage.jsx",
+    "./Pages/MySurveys":"./src/Pages/MySurveys.jsx",
+    "./components/Dropdown/CountryDropdown":"./src/components/Dropdown/CountryDropdown",
+    "./components/Dropdown/LocationDropdown":"./src/components/Dropdown/LocationDropdown",
+    "./components/Categories":"./src/components/Category",
+    "./components/Map":"./src/components/Map",
+    "./components/Marker":"./src/components/Marker"
+
+
+
+
   },
   "keywords": [],
   "dependencies": {
@@ -22,7 +32,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "addons": "^0.1.2",
     "axios": "^1.5.0",
-    "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "dotenv": "^16.3.1",
     "eventemitter3": "^5.0.1",
@@ -38,22 +47,27 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.16.0",
     "require": "^2.4.20",
-    "style-loader": "^3.3.3",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "style-loader": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.15",
+    "babel-loader": "^9.1.3",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "html-webpack-plugin": "^5.6.0",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
-    "vite": "^4.2.0"
+    "vite": "^4.2.0",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.1"
   },
   "author": "",
   "license": "ISC",
