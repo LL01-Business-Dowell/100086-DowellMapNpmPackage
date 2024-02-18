@@ -89,6 +89,7 @@ const LandingPage = () => {
         };
         const placeDetail = await FetchPlaceDetail(placeDetailOptions);
         setPlaceDetails(placeDetail.data.succesful_results);
+        console.log("payload",placeDetail)
       }
     } catch (error) {
       // Handle errors
