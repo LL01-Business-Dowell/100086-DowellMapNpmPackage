@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build"
   },
+  "type": "module",
   "exports": {
     ".": "./src/main.jsx",
     "./Context/PreviewContext": "./src/Context/PreviewContext.jsx",
