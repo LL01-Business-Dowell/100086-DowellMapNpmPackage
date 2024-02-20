@@ -1,7 +1,7 @@
 {
   "homepage": "https://github.com/LL01-Business-Dowell/100086-DowellMapNpmPackage/tree/dowell-living-lab-maps",
   "name": "@dowelllabs/dowell-living-lab-maps",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Welcome to Dowell Living Labs Maps!  This package will show you the nearest locations and also help you gather data about the same after a search.",
   "main": "build/index.js",
   "scripts": {
