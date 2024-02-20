@@ -17,11 +17,18 @@
     "./components/Dropdown/LocationDropdown":"./src/components/Dropdown/LocationDropdown",
     "./components/Categories":"./src/components/Category",
     "./components/Map":"./src/components/Map",
-    "./components/Marker":"./src/components/Marker"
+    "./components/Marker":"./src/components/Marker",
+    "./Layout/Layout":"./src/Layout/Layout"
 
 
 
 
+  },
+
+  "resolve": {
+    "modules": [
+      "./node_modules"
+    ]
   },
   "keywords": [],
   "dependencies": {
