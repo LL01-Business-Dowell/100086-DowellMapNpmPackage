@@ -1,7 +1,7 @@
 import { useGlobalContext } from "../Context/PreviewContext";
 import { useQuery } from "react-query";
 import FetchCategories from "../data/fetchCategories";
-import PropTypes from "prop-types";
+import propTypes from "react";
 
 export default function Category({ loading }) {
   const { inputData, setInputData } = useGlobalContext();
@@ -137,5 +137,5 @@ export default function Category({ loading }) {
 }
 
 Category.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: propTypes.bool.isRequired,
 };

@@ -1,8 +1,7 @@
 import { useGlobalContext } from "../../Context/PreviewContext";
-import PropTypes from "prop-types";
 import { useQuery } from "react-query";
 import FetchCountryRegion from "../../data/fetchCountryRegion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, propTypes } from "react";
 
 export default function LocationDropdown({ loading, country }) {
   const { inputData, setInputData, setCenterCoords, centerCoords,api_key } = useGlobalContext();
@@ -1104,5 +1103,5 @@ export default function LocationDropdown({ loading, country }) {
 }
 
 LocationDropdown.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: propTypes.bool.isRequired,
 };

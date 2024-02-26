@@ -1,6 +1,5 @@
 import { useGlobalContext } from "../../Context/PreviewContext";
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, propTypes } from "react";
 import FetchCountries from "../../data/fetchCountries";
 
 export default function CountryDropdown({ loading }) {
@@ -300,5 +299,5 @@ export default function CountryDropdown({ loading }) {
 }
 
 CountryDropdown.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  loading: propTypes.bool.isRequired,
 };

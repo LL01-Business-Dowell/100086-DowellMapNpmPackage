@@ -10,20 +10,7 @@
   },
   "type": "module",
   "exports": {
-    ".": "./src/main.jsx",
-    "./Context/PreviewContext": "./src/Context/PreviewContext.jsx",
-    "./Pages/LandingPage": "./src/Pages/LandingPage.jsx",
-    "./Pages/MySurveys":"./src/Pages/MySurveys.jsx",
-    "./components/Dropdown/CountryDropdown":"./src/components/Dropdown/CountryDropdown",
-    "./components/Dropdown/LocationDropdown":"./src/components/Dropdown/LocationDropdown",
-    "./components/Categories":"./src/components/Category",
-    "./components/Map":"./src/components/Map",
-    "./components/Marker":"./src/components/Marker",
-    "./Layout/Layout":"./src/Layout/Layout"
-
-
-
-
+    ".": "./src/main.jsx"
   },
 
   "resolve": {
